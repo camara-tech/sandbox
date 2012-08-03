@@ -1,3 +1,5 @@
+# node editor
+# requires PyYAML, stackless python, and graphics.py
 import graphics
 import yaml
 
