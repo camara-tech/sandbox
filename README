@@ -2,8 +2,6 @@ sandbox is random
 
 the goal of everything in this project is to be as dependent as possible on the standard libraries
 
-First Project:
+Projects:
 Node Editor - requires stackless python, yaml, and graphics.py (from "Python Programming" book)
-
-
-
+Pomodoro -  implements the pomodoro time management technique.
