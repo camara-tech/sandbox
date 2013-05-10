@@ -1,0 +1,99 @@
+Notes and plans for the different bits and bobs in this sandbox
+
+Node Editor
+===========
+High-level view:
+----------------
+Visual node editor in the realm of Illumination software Creator or Blender's node editor
+
+Reasons for working on this:
+----------------------------
+I wanted to do something similar to Illumination Software Creator which has multiple input and output points for each node, unlike ISC. 
+
+Goal:
+-----
+make the visual representation go to code/visual/audio result
+
+Some Noodling
+-------------
+node input
+node output
+node operation
+node type
+node encapsulation
+
+
+[type,[input 1, input 2],[output 1], name]
+
+var x = 5 = ["var",[5],[],"x"]
+
+def func (x=5)
+	for a in range x
+	print a
+
+["def",[x],[],"func"]
+
+["def",[x],[y],"funcwithreturn]
+
+List of nodes and connections
+actual states based on changes to nodes
+
+add node
+remove node
+connect node
+disconnect node
+Move Node
+Add Connector
+remove connector
+move connector
+connect connect
+disconnect connector
+
+Quick and Dirty Pseudocode
+--------------------------
+Load window
+	set window size
+	set window title
+	set graphical context (tk, opengl, sdl, whatever)
+	load media
+        draw buttons
+	draw canvas
+	get initial state information
+	test if opening file or new file
+	test if opening medium or new medium
+manipulate nodes
+	add nodes
+	remove nodes and any connectors
+	connect nodes with connectors
+	disconnect nodes from connectors
+	move nodes and any connectors
+	focus on node
+	update node info
+detect node changes and make appropriate changes to medium (code/image/audio)
+	test node connectivity
+	test node info changes
+	test output view position among nodes
+	run through changes of each node on medium
+	update output viewer of changes at it's position
+save node configuration
+	get node connections
+	get node info
+	get node positions
+	calculate best zoom
+	open and save all above info (yaml?)
+save changes to medium
+	calculate changes made 
+	make changes
+	save medium
+update window
+	click mouse(select, focus)
+	drag mouse(pan)
+	zoom in
+	zoom out
+	keyboard input(shortcuts/text input)
+close program
+	make sure file is saved
+	do not save the medium
+	if necessary, delete all objects in memory
+	close program
+

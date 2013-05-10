@@ -1,16 +1,31 @@
-# node editor
-# requires PyYAML, stackless python, and graphics.py
-import graphics
 import yaml
-
+import pygame
 
 def main():
-    window = graphics.GraphWin('Generic Node Editor', 800, 600, autoflush=False)
+# Load window
+    #Set Window Size
+    pygame.init()
+    screen = pygame.display.set_mode((800,600))
+    #set window title
+    pygame.display.set_caption("Node Editor")
+    #set graphical context
+    #load media
+    #draw buttons
+    #draw canvas
     
-    c=graphics.Circle(graphics.Point(300,400),100)
-    c.draw(window)
-    window.getMouse()
-    window.close()
-    graphics.update()
+    #get initial state information
+    quit = False
+    #test if opening file or new file
+    #test if opening medium or new medium
+#main loop
+    while quit == False:
+        quit==True
+#Manipulate Nodes
+    #add nodes
+    #remove nodes and connectors
+    #disconnect nodes from connectors
+    #move nodes and connectors
+    #focus on node
+    #update node info
     
-main()
+    
