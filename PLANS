@@ -49,6 +49,11 @@ move connector
 connect connect
 disconnect connector
 
+to draw a node I need a little math done in order to ensure that it is the proper size and everything is in place.
+Text: 16 pixels
+border: 2 pixels
+attach circle: 4 pixels
+
 Quick and Dirty Pseudocode
 --------------------------
 Load window
