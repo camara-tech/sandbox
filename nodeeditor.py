@@ -1,9 +1,13 @@
 #Iteration 1: load a window and set it's caption
 #Iteration 2: escape key quits, Track the Mouse and display debug info
 #Iteration 3: draw box and move with mouse
+#Iteration 4: refactor debug system
 import yaml
 import pygame
 
+def debugMsg(msg):
+    pygame.event.post(pygame.event.Event(pygame.USEREVENT, {'msg':str(msg)}))
+    
 def main():
 # Load window
     #Set Window Size and graphical context
@@ -22,13 +26,14 @@ def main():
     cursor_pos = (0,0)
     cursor_click = (0,0,0)
     cursor_rel = (0,0)
-    #draw buttons
-    #draw canvas
     
+    debug_font = debug_font = pygame.font.Font(None,20)
+    debug_color = (200,200,200)
+    debug_posx = 5
+    debug_posy = 5
     #get initial state information
     quit = False
-    #test if opening file or new file
-    #test if opening medium or new medium
+    
 #main loop
     while quit == False:
         #handle events
@@ -52,25 +57,23 @@ def main():
                     boxposy = movey+boxposy
             if event.type == pygame.MOUSEBUTTONDOWN:
                 cursor_click = event.button
-                pass
             if event.type == pygame.MOUSEBUTTONUP:
                 pass
+            #display debug info
+            if event.type == pygame.USEREVENT:
+                debug_msg = event.msg
+                debug_render = debug_font.render(debug_msg,True,debug_color)
+                screen.blit(debug_render,(debug_posx,debug_posy))
+                debug_posy = debug_posy+15
+
+        debug_posy = 5
         
-        
-        #display debug info
-        debug_font = pygame.font.Font(None,20)
-        debug_cursorposition = debug_font.render(str(cursor_pos),True,(200,200,200))
-        debug_cursorclicks=debug_font.render(str(box_rect),True,(200,200,200))
-        debug_cursorrel=debug_font.render(str(cursor_rect),True,(200,200,200))
-        debug_pos1 = (5,5)
-        debug_pos2 = (5,20)
-        debug_pos3 = (5,35)
+        debugMsg(cursor_pos)
+        debugMsg(box_rect)
+        debugMsg(cursor_rect)
         #update display
         box_rect = screen.blit(box,(boxposx,boxposy))
         cursor_rect = screen.blit(cursor,cursor_pos)
-        screen.blit(debug_cursorposition,debug_pos1)
-        screen.blit(debug_cursorclicks,debug_pos2)
-        screen.blit(debug_cursorrel,debug_pos3)
         pygame.display.flip()
         screen.fill((0,0,0))
 

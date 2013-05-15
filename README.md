@@ -1,6 +1,6 @@
 sandbox is random
 
-the goal of everything in this project is to be as dependent as possible on the standard libraries
+This project is experimental and is written terribly.
 
 First Project:
 Node Editor - requires CPython, yaml, and pygame
