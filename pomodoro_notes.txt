@@ -1,0 +1,5 @@
+journal/pomodoro timer/calendar all rolled into one.
+
+calendar - events
+journal - notes
+pomodoro timer - projects
