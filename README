@@ -1,9 +1,11 @@
 sandbox is random
+It is the birthplace of new projects
 
 the goal of everything in this project is to be as dependent as possible on the standard libraries
 
-First Project:
+Projects
 Node Editor - requires stackless python, yaml, and graphics.py (from "Python Programming" book)
 
+Optimal Loadout - a website that determines the logistics of the best growth path for your RPG character.
 
 
