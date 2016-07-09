@@ -1,0 +1,5 @@
+#include "Button.dba"
+
+foo("test")
+wait key
+end

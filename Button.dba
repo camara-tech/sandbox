@@ -1,0 +1,11 @@
+`##########
+`Button functions
+`##########
+
+`setup
+#constant TRUE = 1
+#constant FALSE = 0
+quit as boolean = FALSE
+sync on : sync rate 60
+
+`****Test****
