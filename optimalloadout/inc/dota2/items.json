@@ -1,0 +1,13 @@
+{
+    "CONSUMABLES" : [
+        {
+            "Clarity" : [
+                "gold-cost" : 50,
+                "mana" : 100,
+                "duration" : 30]
+        },
+            "Tango" : [
+                ]
+        ]
+        
+}

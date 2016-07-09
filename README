@@ -1,8 +1,0 @@
-sandbox is random
-
-the goal of everything in this project is to be as dependent as possible on the standard libraries
-
-Projects:
-Node Editor - A generic node editor; requires stackless python, yaml, and pygame
-Pomodoro -  implements the pomodoro time management technique. requires graphics.py
-

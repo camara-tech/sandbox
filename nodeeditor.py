@@ -1,93 +1,80 @@
+#Iteration 1: load a window and set it's caption
+#Iteration 2: escape key quits, Track the Mouse and display debug info
+#Iteration 3: draw box and move with mouse
+#Iteration 4: refactor debug system
+import yaml
 import pygame
 
-#global constants
-RGB_DARKGREY=(100,100,100)
-RGB_MEDIUMGRAY=(150,150,150)
-
-def draw_link(nodeOut=None, nodeIn=None):
-    """
-    draw_link(nodeOut,nodeIn)
-
-    draws a links between two nodes
-
-    default nodeOut = None
-    default nodeIn = None
-    """
-    #get pygame display surface
-    display = pygame.display.get_surface()
-    #get position of output on nodeOut
-    rectOut = nodeOut.get_rect()
-    #get position of input on nodeIn
-    rectIn = nodeIn.get_rect()
-    #draw bezier between input and output
-    #return surface of bezier
-    return link
-def draw_node(size=(100,100)):
-    """
-    draw_node(size=(width,height))
-
-    draw a node with input and output points
+def debugMsg(msg):
+    pygame.event.post(pygame.event.Event(pygame.USEREVENT, {'msg':str(msg)}))
     
-    default width = 100
-    default height = 100
-    """
-    #create a new surface
-    node=pygame.Surface(size)
-    #create a border of dark grey
-    node.fill((100,100,100))
-    #fill with medium grey
-    node.fill((150,150,150),(1,1,98,98))
-    #draw input 
-    pygame.draw.circle(node,(100,100,100),(0,20),5)
-    #draw output
-    pygame.draw.circle(node,(100,100,100),(100,80),5)
-
-    return node
-
 def main():
-    """Initializes, runs the main/master loop"""
-
-    #Initialize Pygame
+# Load window
+    #Set Window Size and graphical context
     pygame.init()
-
-    #Initial screen setup
-    display=pygame.display.set_mode((800,600))
+    screen = pygame.display.set_mode((800,600),pygame.RESIZABLE,0)
+    #set window title
+    pygame.display.set_caption("Node Editor")
+    #load media
+    box = pygame.Surface((200,100))
+    box_rect = box.fill((100,100,200))
+    boxposx = 100
+    boxposy = 100
     
-    #initial variable setup
-    quit=False
+    cursor = pygame.Surface((5,5))
+    cursor_rect = cursor.fill((200,200,100))
+    cursor_pos = (0,0)
+    cursor_click = (0,0,0)
+    cursor_rel = (0,0)
+    
+    debug_font = debug_font = pygame.font.Font(None,20)
+    debug_color = (200,200,200)
+    debug_posx = 5
+    debug_posy = 5
+    #get initial state information
+    quit = False
+    
+#main loop
+    while quit == False:
+        #handle events
+        for event in pygame.event.get():
+            #when someone presses the exit button
+            if event.type == pygame.QUIT:
+                quit = True
+            #handle keyboard input
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    quit = True
+            #handle mouse input
+            if event.type == pygame.MOUSEMOTION:
+                #Track the Mouse
+                cursor_click = event.buttons
+                cursor_pos = event.pos
+                cursor_rel = event.rel
+                if event.buttons == (1,0,0) and cursor_rect.colliderect(box_rect):
+                    movex, movey = cursor_rel
+                    boxposx = movex+boxposx
+                    boxposy = movey+boxposy
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                cursor_click = event.button
+            if event.type == pygame.MOUSEBUTTONUP:
+                pass
+            #display debug info
+            if event.type == pygame.USEREVENT:
+                debug_msg = event.msg
+                debug_render = debug_font.render(debug_msg,True,debug_color)
+                screen.blit(debug_render,(debug_posx,debug_posy))
+                debug_posy = debug_posy+15
 
-    #main loop
-    while quit==False:
-        #wait for a key then exit
-        if pygame.event.peek(pygame.KEYDOWN):
-            quit=True
-        #draw box in window
-        node1=draw_node()
-        node2=draw_node()
-        display.blit(node1,(20,20))
-        display.blit(node2,(100,200))
-        #keep screen updated
+        debug_posy = 5
+        
+        debugMsg(cursor_pos)
+        debugMsg(box_rect)
+        debugMsg(cursor_rect)
+        #update display
+        box_rect = screen.blit(box,(boxposx,boxposy))
+        cursor_rect = screen.blit(cursor,cursor_pos)
         pygame.display.flip()
+        screen.fill((0,0,0))
+
 main()
-
-#DONE
-#step one, show window
-#step two, draw box in window
-#step three, draw 2 boxes in window
-#step four, draw input and output sections on boxes
-
-#TODO
-#step five, draw line between input and output sections
-#step six, be able to move boxes around while keeping line attached.
-#step seven, add buttons to boxes
-#step eight, be able to add boxes
-#step nine, be able to remove boxes
-#step ten, be able to connect all the boxes
-#step eleven, be able to store layout and connections of boxes
-#step twelve, add "meanings" to boxes
-#step thirteen, parse layout of boxes and execute meanings
-#step fourteen, add textboxes
-#step fifteen, add color pickers
-#step sixteen, add visualization tools
-#step seventeen, add language parsers
-
